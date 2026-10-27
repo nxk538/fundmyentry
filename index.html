@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>FundMyEntry | Free Competition Entry & Mentorship for Designers</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23ff4a2b'/%3E%3C/svg%3E">
+    <script>
+        // Apply saved theme before paint (default: light)
+        if (localStorage.getItem('fme_theme') === 'dark') document.documentElement.classList.add('dark');
+    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        paper: 'rgb(var(--paper) / <alpha-value>)',
+                        panel: 'rgb(var(--panel) / <alpha-value>)',
+                        ink: 'rgb(var(--ink) / <alpha-value>)',
+                        mute: 'rgb(var(--mute) / <alpha-value>)',
+                        line: 'rgb(var(--line) / <alpha-value>)',
+                        accent: 'rgb(var(--accent) / <alpha-value>)',
+                    },
+                    fontFamily: {
+                        sans: ['"Inter Tight"', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --paper: 244 244 242;
+            --panel: 232 232 229;
+            --ink: 17 17 17;
+            --mute: 115 115 112;
+            --line: 17 17 17;
+            --accent: 255 74 43;
+        }
+        .dark {
+            --paper: 17 17 17;
+            --panel: 30 30 29;
+            --ink: 240 240 237;
+            --mute: 150 150 146;
+            --line: 240 240 237;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        ::selection { background: rgb(var(--accent)); color: #111; }
+
+        /* Type */
+        .display { font-weight: 500; letter-spacing: -0.045em; line-height: 0.88; text-transform: uppercase; }
+        .meta { font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+        .rule { border-color: rgb(var(--line) / 0.85); }
+        .rule-soft { border-color: rgb(var(--line) / 0.15); }
+
+        /* Arrow link with underline */
+        .u-link { display: inline-flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid currentColor; padding-bottom: 2px; font-weight: 500; }
+        .u-link .arr { transition: transform 0.25s ease; }
+        .u-link:hover .arr { transform: translate(2px, -2px); }
+
+        /* Solid button */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem;
+            background: rgb(var(--ink)); color: rgb(var(--paper));
+            padding: 1rem 1.25rem; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .btn:hover { background: rgb(var(--accent)); color: #111; }
+        .btn:disabled { opacity: 0.5; cursor: wait; }
+
+        /* Hero accent card */
+        .card-accent { background: rgb(var(--accent)); color: #111; }
+
+        /* Path tabs */
+        .tab { color: rgb(var(--mute)); transition: color 0.2s ease; }
+        .tab:hover { color: rgb(var(--ink)); }
+        .tab.is-active { color: rgb(var(--ink)); }
+        .tab.is-active::before { content: '● '; color: rgb(var(--accent)); }
+
+        /* Range inputs */
+        input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 1px; background: rgb(var(--line) / 0.85); outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: rgb(var(--accent)); cursor: pointer; }
+        input[type=range]::-moz-range-thumb { height: 16px; width: 16px; border-radius: 50%; border: 0; background: rgb(var(--accent)); cursor: pointer; }
+
+        /* Form */
+        .field {
+            width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgb(var(--line) / 0.85); border-radius: 0;
+            padding: 0.75rem 0; font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 500; letter-spacing: -0.02em; color: rgb(var(--ink));
+        }
+        .field::placeholder { color: rgb(var(--mute) / 0.6); }
+        .field:focus { outline: none; border-color: rgb(var(--accent)); }
+        .role-option { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid rgb(var(--line) / 0.15); cursor: pointer; transition: color 0.2s ease; }
+        .role-option:hover { color: rgb(var(--accent)); }
+        .role-option input { appearance: none; -webkit-appearance: none; width: 12px; height: 12px; border: 1px solid rgb(var(--ink)); border-radius: 50%; cursor: pointer; }
+        .role-option input:checked { background: rgb(var(--accent)); border-color: rgb(var(--accent)); }
+        .role-option input:focus-visible { outline: 1px solid rgb(var(--accent)); outline-offset: 3px; }
+        .form-msg { min-height: 1.25rem; font-size: 0.8rem; font-weight: 500; }
+        .form-msg.error { color: rgb(var(--accent)); }
+
+        /* FAQ */
+        .faq-mark { position: relative; width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.3s ease; }
+        .faq-mark::before, .faq-mark::after { content: ''; position: absolute; background: currentColor; }
+        .faq-mark::before { left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; }
+        .faq-mark::after { top: 0; bottom: 0; left: 50%; width: 1.5px; margin-left: -0.75px; }
+        .faq-mark.open { transform: rotate(45deg); }
+
+        /* Load / scroll reveal */
+        .rise { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+        .rise.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .rise { opacity: 1; transform: none; transition: none; }
+        }
+    </style>
+</head>
+<body class="bg-paper text-ink min-h-screen flex flex-col antialiased">
+
+    <!-- Top meta bar -->
+    <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur-md">
+        <div class="px-5 sm:px-8 pt-4 pb-3 grid grid-cols-2 md:grid-cols-3 items-start meta">
+            <a href="#" class="flex items-center gap-2" aria-label="FundMyEntry home">
+                <span class="w-3 h-3 bg-accent inline-block"></span>
+                <span>FundMyEntry</span>
+            </a>
+            <a href="#join" class="hidden md:block hover:text-accent transition-colors">Reach out<br><span class="text-mute">Join the waitlist</span></a>
+            <div class="flex items-center justify-end gap-4">
+                <span class="hidden sm:inline text-mute">[ <span id="clock">--:--</span> ]</span>
+                <!-- Theme Switcher Toggle Button -->
+                <button id="themeToggle" aria-label="Switch to dark mode" class="w-7 h-7 -my-1 flex items-center justify-center rounded-full border rule hover:bg-ink hover:text-paper transition-colors">
+                    <i id="themeIcon" class="fa-solid fa-moon text-[10px]"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Numbered navigation -->
+        <nav class="px-5 sm:px-8 border-y rule">
+            <div class="grid grid-cols-3 md:grid-cols-5 text-[0.78rem] py-1.5">
+                <a href="#about" class="hover:text-accent transition-colors"><span class="mr-3">1</span>why</a>
+                <a href="#how-it-works" class="hover:text-accent transition-colors"><span class="mr-3">2</span>process</a>
+                <a href="#calculator" class="hover:text-accent transition-colors"><span class="mr-3">3</span>split</a>
+                <a href="#join" class="hidden md:block hover:text-accent transition-colors"><span class="mr-3">4</span>waitlist</a>
+                <a href="#faq" class="hidden md:block hover:text-accent transition-colors"><span class="mr-3">5</span>questions</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="px-5 sm:px-8 pt-16 md:pt-24 pb-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-y-10 gap-x-8">
+                <div class="md:col-span-5 flex md:flex-col justify-between meta">
+                    <span class="rise">[ Free entry • Real mentorship • Shared prizes ]</span>
+                    <span class="text-mute rise hidden md:block">Est. 2026 // Architecture &amp; Design</span>
+                </div>
+
+                <div class="md:col-span-7 relative">
+                    <h1 class="display text-[15vw] md:text-[8.2vw] rise" style="transition-delay:.05s">
+                        Enter<br>for free.<br>Get a<br>mentor.
+                    </h1>
+
+                    <!-- Accent card overlapping the headline -->
+                    <div class="card-accent lg:absolute lg:right-0 lg:bottom-[-2rem] mt-8 lg:mt-0 w-full sm:w-[19rem] p-5 flex flex-col gap-6 rise" style="transition-delay:.25s">
+                        <span class="meta">[ Pros ]</span>
+                        <p class="text-[0.95rem] font-medium leading-snug">Practitioners find talent early and share the winnings when their sponsored entry wins.</p>
+                        <a href="#calculator" class="u-link self-start text-sm">Calculate splits <span class="arr">↗</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intro + spec table -->
+        <section class="px-5 sm:px-8 pb-24 md:pb-32">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 pt-16 md:pt-24">
+                <div class="md:col-span-5 meta rise">1 &nbsp; Introduction</div>
+                <div class="md:col-span-7 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
+                    <div class="rise">
+                        <p class="text-[0.95rem] leading-snug font-medium max-w-sm mb-8">
+                            Architecture and design students enter prestige competitions with $0 out of pocket while paired with real industry mentors. Professionals scout top creators early and earn a percentage when their sponsored entry wins.
+                        </p>
+                        <a href="#join" class="btn w-full sm:w-auto">Get early access <span>↗</span></a>
+                    </div>
+                    <dl class="text-[0.8rem] border-t rule rise" style="transition-delay:.1s">
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>entry fee</dt><dd>$0 for students</dd></div>
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>paid by</dt><dd>firm sponsors</dd></div>
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>mentorship</dt><dd>1-on-1 desk crits</dd></div>
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>prize split</dt><dd>pre-agreed %</dd></div>
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>waitlist</dt><dd><strong id="heroCounter" class="font-semibold text-accent">1,428</strong> members</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition Section -->
+        <section id="about" class="px-5 sm:px-8 py-20 border-t rule-soft">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 mb-12">
+                <div class="md:col-span-5 meta rise">[ Why ]</div>
+                <h2 class="md:col-span-7 display text-5xl sm:text-6xl lg:text-7xl rise">Merit,<br>mentorship,<br>talent.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Students -->
+                <div class="rise">
+                    <button onclick="openModal('students')" class="group block w-full text-left">
+                        <div class="bg-panel aspect-[4/3] p-5 flex flex-col justify-between group-hover:bg-accent group-hover:text-[#111] transition-colors">
+                            <span class="meta">01</span>
+                            <span class="display text-6xl lg:text-7xl">$0</span>
+                        </div>
+                        <span class="meta block mt-2">[ For students ]</span>
+                    </button>
+                    <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Free entry + real mentorship</h3>
+                    <p class="text-sm text-mute leading-snug max-w-sm">Enter career-changing competitions with zero out-of-pocket costs, while getting one-on-one design guidance and critique from working professionals.</p>
+                </div>
+
+                <!-- Professionals -->
+                <div class="rise" style="transition-delay:.1s">
+                    <button onclick="openModal('sponsors')" class="group block w-full text-left">
+                        <div class="bg-panel aspect-[4/3] p-5 flex flex-col justify-between group-hover:bg-accent group-hover:text-[#111] transition-colors">
+                            <span class="meta">02</span>
+                            <span class="display text-6xl lg:text-7xl">Scout</span>
+                        </div>
+                        <span class="meta block mt-2">[ For professionals ]</span>
+                    </button>
+                    <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Scout talent &amp; earn a prize share</h3>
+                    <p class="text-sm text-mute leading-snug max-w-sm">Discover rising designers before everyone else. Micro-fund entry fees, mentor students through real design problems, and earn a share when they win.</p>
+                </div>
+
+                <!-- Industry -->
+                <div class="rise" style="transition-delay:.2s">
+                    <button onclick="openModal('everyone')" class="group block w-full text-left">
+                        <div class="bg-panel aspect-[4/3] p-5 flex flex-col justify-between group-hover:bg-accent group-hover:text-[#111] transition-colors">
+                            <span class="meta">03</span>
+                            <span class="display text-6xl lg:text-7xl">Merit</span>
+                        </div>
+                        <span class="meta block mt-2">[ For industry ]</span>
+                    </button>
+                    <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Merit-based opportunity</h3>
+                    <p class="text-sm text-mute leading-snug max-w-sm">No student is left out because of registration costs. Talent is recognized for creativity, technical ability and problem solving — not wallet size.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="px-5 sm:px-8 py-20 md:py-28 border-t rule-soft">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 mb-12">
+                <div class="md:col-span-5 meta rise">2 &nbsp; Process</div>
+                <div class="md:col-span-7 rise">
+                    <h2 class="display text-5xl sm:text-6xl lg:text-7xl mb-10">How it<br>works</h2>
+                    <!-- Role Toggle -->
+                    <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium">
+                        <button id="toggleStudentFlow" onclick="switchWorkflow('student')" class="tab is-active">Student path</button>
+                        <button id="toggleSponsorFlow" onclick="switchWorkflow('sponsor')" class="tab">Professional / sponsor path</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Steps -->
+            <div id="studentWorkflow" class="border-t rule">
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">01</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Pick a competition</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Choose a design or architecture competition and submit your project pitch for free.</p>
+                </div>
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">02</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Get funded &amp; mentored</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">A professional firm pays your entry fee and connects with you for hands-on feedback.</p>
+                </div>
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">03</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Refine &amp; submit</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Develop your presentation boards with real industry advice and submit your entry.</p>
+                </div>
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">04</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Win &amp; share</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Take home the majority of the prize money while building career-defining connections.</p>
+                </div>
+            </div>
+
+            <!-- Sponsor Steps (hidden by default) -->
+            <div id="sponsorWorkflow" class="border-t rule hidden">
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">01</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Browse talent pitches</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Review project concepts submitted by promising architecture and design students.</p>
+                </div>
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">02</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Cover the fee &amp; partner</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Micro-sponsor entry fees ($50–$300) to back high-potential students early.</p>
+                </div>
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">03</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Provide mentorship</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Guide the student through desk crits and review sessions to elevate their entry.</p>
+                </div>
+                <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule">
+                    <span class="col-span-2 md:col-span-5 display text-3xl text-accent">04</span>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Earn a share &amp; recruit</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Receive a share of the cash prize when they win, and get direct hiring priority.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prize Split Calculator -->
+        <section id="calculator" class="px-5 sm:px-8 py-20 md:py-28 bg-panel">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 mb-14">
+                <div class="md:col-span-5 meta rise">3 &nbsp; Split &amp; ROI</div>
+                <div class="md:col-span-7 rise">
+                    <h2 class="display text-5xl sm:text-6xl lg:text-7xl mb-6">Prize split<br>calculator</h2>
+                    <p class="text-sm text-mute max-w-sm">Simulate competition entry costs, winning prize payouts and mentor return on investment.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-14">
+                <!-- Inputs -->
+                <div class="md:col-span-5 space-y-10 rise">
+                    <div>
+                        <label for="feeInput" class="flex justify-between items-baseline text-[0.8rem] mb-4">
+                            <span>registration fee <span class="text-mute">(covered 100%)</span></span>
+                            <span id="feeDisplay" class="font-semibold">$150</span>
+                        </label>
+                        <input id="feeInput" type="range" min="25" max="500" step="25" value="150">
+                    </div>
+                    <div>
+                        <label for="prizeInput" class="flex justify-between items-baseline text-[0.8rem] mb-4">
+                            <span>winning prize</span>
+                            <span id="prizeDisplay" class="font-semibold">$5,000</span>
+                        </label>
+                        <input id="prizeInput" type="range" min="500" max="25000" step="500" value="5000">
+                    </div>
+                    <div>
+                        <label for="splitInput" class="flex justify-between items-baseline text-[0.8rem] mb-4">
+                            <span>sponsor share</span>
+                            <span id="splitDisplay" class="font-semibold">25%</span>
+                        </label>
+                        <input id="splitInput" type="range" min="5" max="50" step="5" value="25">
+                        <span class="text-[0.75rem] text-mute mt-3 block">student keeps <span id="studentSplitDisplay" class="text-ink font-semibold">75%</span></span>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="md:col-start-7 md:col-span-6 rise" style="transition-delay:.1s">
+                    <div class="meta mb-3">[ Estimated outcome upon winning ]</div>
+                    <div class="border-t rule">
+                        <div class="flex justify-between items-end py-4 border-b rule">
+                            <span class="text-[0.8rem]">student net earnings</span>
+                            <span id="studentPayout" class="display text-5xl sm:text-6xl">$3,750</span>
+                        </div>
+                        <div class="flex justify-between items-end py-4 border-b rule">
+                            <span class="text-[0.8rem]">sponsor / mentor payout</span>
+                            <span id="sponsorPayout" class="display text-5xl sm:text-6xl text-accent">$1,250</span>
+                        </div>
+                        <div class="flex justify-between items-end py-4 border-b rule">
+                            <span class="text-[0.8rem]">sponsor ROI multiplier</span>
+                            <span id="sponsorRoi" class="text-2xl font-medium tracking-tight">8.3x Return</span>
+                        </div>
+                    </div>
+                    <p class="text-[0.7rem] text-mute leading-snug mt-4 max-w-md">
+                        *Students pay $0 regardless of outcome. Sponsors cover registration costs in exchange for talent access, mentoring opportunities and prize equity.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waitlist Form Section -->
+        <section id="join" class="px-5 sm:px-8 py-20 md:py-28">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8">
+                <div class="md:col-span-5 meta rise">4 &nbsp; [ Reach out ]</div>
+
+                <div class="md:col-span-7 rise">
+                    <div id="formContainer">
+                        <h2 class="display text-6xl sm:text-7xl lg:text-8xl mb-6">Join the<br>waitlist</h2>
+                        <p class="text-sm text-mute mb-12 max-w-sm">One email, one question. Get early access when FundMyEntry launches.</p>
+
+                        <form id="waitlistForm" action="https://formspree.io/f/xvkkayny" method="POST" class="space-y-12 max-w-2xl" novalidate>
+                            <div>
+                                <label for="email" class="meta block">Email address</label>
+                                <input type="email" id="email" name="email" required placeholder="you@university.edu" class="field">
+                            </div>
+
+                            <fieldset>
+                                <legend class="meta mb-2">Which best describes you?</legend>
+                                <div class="border-t rule">
+                                    <label class="role-option">
+                                        <input type="radio" name="role" value="student" required>
+                                        <span class="font-medium">Architecture / design student</span>
+                                        <span class="meta text-mute">A</span>
+                                    </label>
+                                    <label class="role-option">
+                                        <input type="radio" name="role" value="sponsor">
+                                        <span class="font-medium">Professional / firm sponsor &amp; mentor</span>
+                                        <span class="meta text-mute">B</span>
+                                    </label>
+                                    <label class="role-option">
+                                        <input type="radio" name="role" value="other">
+                                        <span class="font-medium">Educator, university or alum</span>
+                                        <span class="meta text-mute">C</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <div class="space-y-3">
+                                <button type="submit" id="submitBtn" class="btn w-full sm:w-80">Get Early Access</button>
+                                <div id="formMsg" class="form-msg"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Success State (hidden by default) -->
+                    <div id="successState" class="hidden">
+                        <span class="w-4 h-4 bg-accent block mb-8"></span>
+                        <h3 class="display text-6xl sm:text-7xl mb-6">You're on<br>the list.</h3>
+                        <p class="text-sm text-mute max-w-sm mb-10">
+                            Thank you for joining. We'll send an invite to your inbox as soon as FundMyEntry opens beta access.
+                        </p>
+                        <div class="border-t rule max-w-sm">
+                            <div class="grid grid-cols-2 py-1.5 border-b rule text-[0.8rem]"><span>queue position</span><span class="font-semibold">#<span id="queuePosition">1,429</span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="px-5 sm:px-8 py-20 md:py-28 border-t rule-soft">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8">
+                <div class="md:col-span-5 meta rise">5 &nbsp; Questions</div>
+
+                <div class="md:col-span-7 rise">
+                    <h2 class="display text-5xl sm:text-6xl lg:text-7xl mb-12">FAQ</h2>
+                    <div class="border-t rule">
+                        <div class="border-b rule">
+                            <button onclick="toggleFaq(1)" class="w-full py-5 text-left flex justify-between items-center gap-6 hover:text-accent transition-colors">
+                                <span class="text-lg sm:text-xl font-medium tracking-tight">Is entry really 100% free for students?</span>
+                                <span id="faqIcon1" class="faq-mark"></span>
+                            </button>
+                            <div id="faqAns1" class="pb-6 text-sm text-mute leading-snug max-w-lg hidden">
+                                Yes. Sponsors cover 100% of registration fees directly. Students pay zero out-of-pocket costs and face no financial liability whether the project wins or loses.
+                            </div>
+                        </div>
+                        <div class="border-b rule">
+                            <button onclick="toggleFaq(2)" class="w-full py-5 text-left flex justify-between items-center gap-6 hover:text-accent transition-colors">
+                                <span class="text-lg sm:text-xl font-medium tracking-tight">How does the mentorship component work?</span>
+                                <span id="faqIcon2" class="faq-mark"></span>
+                            </button>
+                            <div id="faqAns2" class="pb-6 text-sm text-mute leading-snug max-w-lg hidden">
+                                Sponsoring professionals provide structured desk crits, design feedback and industry insights as students prepare their competition submissions.
+                            </div>
+                        </div>
+                        <div class="border-b rule">
+                            <button onclick="toggleFaq(3)" class="w-full py-5 text-left flex justify-between items-center gap-6 hover:text-accent transition-colors">
+                                <span class="text-lg sm:text-xl font-medium tracking-tight">How are winning cash prizes distributed?</span>
+                                <span id="faqIcon3" class="faq-mark"></span>
+                            </button>
+                            <div id="faqAns3" class="pb-6 text-sm text-mute leading-snug max-w-lg hidden">
+                                Prizes are split based on the pre-agreed percentage (e.g. 75% to student, 25% to sponsor) once competition organizers disburse funds.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="px-5 sm:px-8 pt-20 pb-5 border-t rule">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 mb-20">
+            <div class="md:col-span-5 meta">[ Links ]</div>
+            <div class="md:col-span-7 display text-5xl sm:text-6xl lg:text-7xl flex flex-col items-start">
+                <a href="#join" class="hover:text-accent transition-colors">Waitlist</a>
+                <a href="#calculator" class="hover:text-accent transition-colors">Calculator</a>
+                <a href="#" class="hover:text-accent transition-colors">Contact</a>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-between gap-4 meta">
+            <span>FundMyEntry '26</span>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-accent transition-colors">Privacy policy</a>
+                <a href="#" class="hover:text-accent transition-colors">Terms of service</a>
+            </div>
+            <span>All rights reserved</span>
+        </div>
+    </footer>
+
+    <!-- Value Proposition Modal -->
+    <div id="infoModal" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/60 backdrop-blur-sm hidden" onclick="if (event.target === this) closeModal()">
+        <div class="bg-paper text-ink max-w-lg w-full p-6 sm:p-8 relative">
+            <button onclick="closeModal()" aria-label="Close" class="absolute top-6 right-6 hover:text-accent transition-colors">
+                <span class="faq-mark open block"></span>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // State Management
+        let waitlistCount = parseInt(localStorage.getItem('fme_waitlist_count') || '1428');
+
+        document.getElementById('heroCounter').textContent = waitlistCount.toLocaleString();
+
+        // Theme Switcher Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function syncThemeIcon() {
+            const isDark = document.documentElement.classList.contains('dark');
+            themeIcon.className = (isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon') + ' text-[10px]';
+            themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('fme_theme', isDark ? 'dark' : 'light');
+            syncThemeIcon();
+        });
+        syncThemeIcon();
+
+        // Local clock in the top bar
+        function updateClock() {
+            document.getElementById('clock').textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        }
+        updateClock();
+        setInterval(updateClock, 30000);
+
+        // Reveal on scroll
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.rise').forEach(el => revealObserver.observe(el));
+
+        // Workflow Switcher
+        function switchWorkflow(role) {
+            const isStudent = role === 'student';
+            document.getElementById('studentWorkflow').classList.toggle('hidden', !isStudent);
+            document.getElementById('sponsorWorkflow').classList.toggle('hidden', isStudent);
+            document.getElementById('toggleStudentFlow').classList.toggle('is-active', isStudent);
+            document.getElementById('toggleSponsorFlow').classList.toggle('is-active', !isStudent);
+        }
+
+        // Calculator Logic
+        const feeInput = document.getElementById('feeInput');
+        const prizeInput = document.getElementById('prizeInput');
+        const splitInput = document.getElementById('splitInput');
+
+        function updateCalculator() {
+            const fee = parseFloat(feeInput.value);
+            const prize = parseFloat(prizeInput.value);
+            const sponsorPercent = parseFloat(splitInput.value);
+            const studentPercent = 100 - sponsorPercent;
+
+            const sponsorShare = (prize * (sponsorPercent / 100));
+            const studentShare = prize - sponsorShare;
+            const roi = (sponsorShare / fee).toFixed(1);
+
+            document.getElementById('feeDisplay').textContent = `$${fee}`;
+            document.getElementById('prizeDisplay').textContent = `$${prize.toLocaleString()}`;
+            document.getElementById('splitDisplay').textContent = `${sponsorPercent}%`;
+            document.getElementById('studentSplitDisplay').textContent = `${studentPercent}%`;
+
+            document.getElementById('studentPayout').textContent = `$${studentShare.toLocaleString()}`;
+            document.getElementById('sponsorPayout').textContent = `$${sponsorShare.toLocaleString()}`;
+            document.getElementById('sponsorRoi').textContent = `${roi}x Return`;
+        }
+
+        feeInput.addEventListener('input', updateCalculator);
+        prizeInput.addEventListener('input', updateCalculator);
+        splitInput.addEventListener('input', updateCalculator);
+        updateCalculator();
+
+        // Waitlist Form Handler
+        const waitlistForm = document.getElementById('waitlistForm');
+        const formMsg = document.getElementById('formMsg');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showFormError(message) {
+            formMsg.textContent = message;
+            formMsg.className = 'form-msg error';
+        }
+
+        waitlistForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const role = waitlistForm.querySelector('input[name="role"]:checked');
+
+            if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showFormError('Please enter a valid email address.');
+                return;
+            }
+
+            if(!role) {
+                showFormError('Please select a role option.');
+                return;
+            }
+
+            formMsg.textContent = '';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining Waitlist...';
+
+            fetch(waitlistForm.action, {
+                method: 'POST',
+                body: new FormData(waitlistForm),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (!response.ok) throw new Error('Submission failed');
+
+                waitlistCount += 1;
+                localStorage.setItem('fme_waitlist_count', waitlistCount.toString());
+                document.getElementById('heroCounter').textContent = waitlistCount.toLocaleString();
+                document.getElementById('queuePosition').textContent = waitlistCount.toLocaleString();
+
+                document.getElementById('formContainer').classList.add('hidden');
+                document.getElementById('successState').classList.remove('hidden');
+            }).catch(() => {
+                showFormError('Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get Early Access';
+            });
+        });
+
+        // FAQ Toggle
+        function toggleFaq(num) {
+            const ans = document.getElementById(`faqAns${num}`);
+            const icon = document.getElementById(`faqIcon${num}`);
+            const isOpen = !ans.classList.toggle('hidden');
+            icon.classList.toggle('open', isOpen);
+        }
+
+        // Modal Handler
+        const infoData = {
+            students: {
+                title: "Student Benefits",
+                body: "Enter high-caliber competitions at $0 cost. Receive desk critiques and portfolio feedback from practicing architects and firms while retaining 100% IP ownership."
+            },
+            sponsors: {
+                title: "Professional & Sponsor Benefits",
+                body: "Identify rising talent before graduation. Micro-sponsor entry fees, offer guidance, earn prize money, and create direct recruitment pipelines."
+            },
+            everyone: {
+                title: "Industry Impact",
+                body: "Levelling the playing field across architecture and design education so talent is judged strictly on innovation and technical merit."
+            }
+        };
+
+        function openModal(type) {
+            const data = infoData[type];
+            document.getElementById('modalContent').innerHTML = `
+                <span class="meta block mb-10">[ ${data.title} ]</span>
+                <h3 class="display text-4xl mb-6 pr-8">${data.title}</h3>
+                <p class="text-sm text-mute leading-snug">${data.body}</p>
+                <button onclick="closeModal()" class="btn mt-10 w-full">Close <span>×</span></button>
+            `;
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>
+<script async src="/.netlify/scripts/ar" data-netlify-deploy-id="6ae114bc087f9d0cad5011fa" data-netlify-site-id="753a9734-ed62-4c18-989c-b85e24e04505" data-agent-runner-id="6ae111d3b4cc3066a88a4ece"></script>
+<script async src="/.netlify/scripts/hud?variant=owner-private" data-nf-variant="owner-private" data-netlify-site-id="753a9734-ed62-4c18-989c-b85e24e04505" data-app-host="app.netlify.com"></script>
