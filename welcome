@@ -190,14 +190,13 @@
                 <div class="md:col-span-7 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
                     <div class="rise">
                         <p class="text-[0.95rem] leading-snug font-medium max-w-sm mb-8">
-                            Architecture students and recent graduates enter prestige competitions with $0 out of pocket while paired with real industry mentors. Professionals give back while scout top creators early and stay up to date with new architectural workflows.
+                            Architecture students and recent graduates enter prestige competitions with $0 out of pocket while paired with real industry mentors, who give back knowledge while scout top creators early and stay up to date with new architectural workflows.
                         </p>
                         <a href="#join" class="btn w-full sm:w-auto">Get early access <span>↗</span></a>
                     </div>
                     <dl class="text-[0.8rem] border-t rule rise" style="transition-delay:.1s">
-                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>entry fee</dt><dd>$0 for students</dd></div>
-                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>paid by</dt><dd>firm sponsors</dd></div>
-                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>mentorship</dt><dd>1-on-1 desk crits</dd></div>
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>entry fee</dt><dd>covered by professionals</dd></div>
+                        <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>mentorship</dt><dd>1-on-1 reviews</dd></div>
                         <div class="grid grid-cols-2 py-1.5 border-b rule"><dt>waitlist</dt><dd><strong id="heroCounter" class="font-semibold text-accent">1,428</strong> members</dd></div>
                     </dl>
                 </div>
@@ -219,7 +218,7 @@
                             <span class="meta">01</span>
                             <span class="display text-6xl lg:text-7xl">$0</span>
                         </div>
-                        <span class="meta block mt-2">[ For students ]</span>
+                        <span class="meta block mt-2">[ For students and recent graduates ]</span>
                     </button>
                     <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Free entry + real mentorship</h3>
                     <p class="text-sm text-mute leading-snug max-w-sm">Enter career-changing competitions with zero out-of-pocket costs, while getting one-on-one design guidance and critique from working professionals.</p>
@@ -234,7 +233,7 @@
                         </div>
                         <span class="meta block mt-2">[ For professionals ]</span>
                     </button>
-                    <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Scout talent &amp; earn a prize share</h3>
+                    <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Scout talent &amp; stay up to date with technology</h3>
                     <p class="text-sm text-mute leading-snug max-w-sm">Discover rising designers before everyone else. Micro-fund entry fees, mentor students through real design problems, and earn a share when they win.</p>
                 </div>
 
@@ -286,7 +285,7 @@
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">04</span>
-                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Win &amp; share</h4>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">win the competition &amp; / or  maintain industry connections &amp; learn from mentor </h4>
                     <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Take home the majority of the prize money while building career-defining connections.</p>
                 </div>
             </div>
@@ -305,12 +304,12 @@
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">03</span>
-                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Provide mentorship</h4>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Provide mentorship and learn from mentee</h4>
                     <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Guide the student through desk crits and review sessions to elevate their entry.</p>
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">04</span>
-                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Earn a share &amp; recruit</h4>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Celebrate the win of the competition &amp;/ or expand on knowledge &amp;/ or recruit</h4>
                     <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Receive a share of the cash prize when they win, and get direct hiring priority.</p>
                 </div>
             </div>
