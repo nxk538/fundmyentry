@@ -118,6 +118,26 @@
         .faq-mark::after { top: 0; bottom: 0; left: 50%; width: 1.5px; margin-left: -0.75px; }
         .faq-mark.open { transform: rotate(45deg); }
 
+        /* Match Simulator Option Pills */
+        .chip-option {
+            border: 1px solid rgb(var(--line) / 0.3);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .chip-option:hover {
+            border-color: rgb(var(--accent));
+            color: rgb(var(--accent));
+        }
+        .chip-option.is-selected {
+            background: rgb(var(--ink));
+            color: rgb(var(--paper));
+            border-color: rgb(var(--ink));
+        }
+
         /* Load / scroll reveal */
         .rise { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
         .rise.in { opacity: 1; transform: none; }
@@ -150,7 +170,7 @@
             <div class="grid grid-cols-3 md:grid-cols-5 text-[0.78rem] py-1.5">
                 <a href="#about" class="hover:text-accent transition-colors"><span class="mr-3">1</span>why</a>
                 <a href="#how-it-works" class="hover:text-accent transition-colors"><span class="mr-3">2</span>process</a>
-                <a href="#calculator" class="hover:text-accent transition-colors"><span class="mr-3">3</span>split</a>
+                <a href="#match-simulator" class="hover:text-accent transition-colors"><span class="mr-3">3</span>match</a>
                 <a href="#join" class="hidden md:block hover:text-accent transition-colors"><span class="mr-3">4</span>waitlist</a>
                 <a href="#faq" class="hidden md:block hover:text-accent transition-colors"><span class="mr-3">5</span>questions</a>
             </div>
@@ -177,7 +197,7 @@
                     <div class="card-accent lg:absolute lg:right-0 lg:bottom-[-2rem] mt-8 lg:mt-0 w-full sm:w-[19rem] p-5 flex flex-col gap-6 rise" style="transition-delay:.25s">
                         <span class="meta">[ Pros ]</span>
                         <p class="text-[0.95rem] font-medium leading-snug">Practitioners find talent early, learn the newest technology trends, and enjoy the world of fun, imaginative design.</p>
-                        <a href="#calculator" class="u-link self-start text-sm">Coming soon <span class="arr">↗</span></a>
+                        <a href="#match-simulator" class="u-link self-start text-sm">Simulate Match <span class="arr">↗</span></a>
                     </div>
                 </div>
             </div>
@@ -190,7 +210,7 @@
                 <div class="md:col-span-7 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
                     <div class="rise">
                         <p class="text-[0.95rem] leading-snug font-medium max-w-sm mb-8">
-                            Architecture students and recent graduates enter prestige competitions with $0 out of pocket while paired with real industry mentors, who give back knowledge while scout top creators early and stay up to date with new architectural workflows.
+                            Architecture students and recent graduates enter prestige competitions with $0 out of pocket while paired with real industry mentors, who give back knowledge while scouting top creators early and staying up to date with new architectural workflows.
                         </p>
                         <a href="#join" class="btn w-full sm:w-auto">Get early access <span>↗</span></a>
                     </div>
@@ -211,14 +231,14 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Students -->
+                <!-- Students & Recent Graduates -->
                 <div class="rise">
                     <button onclick="openModal('students')" class="group block w-full text-left">
                         <div class="bg-panel aspect-[4/3] p-5 flex flex-col justify-between group-hover:bg-accent group-hover:text-[#111] transition-colors">
                             <span class="meta">01</span>
                             <span class="display text-6xl lg:text-7xl">$0</span>
                         </div>
-                        <span class="meta block mt-2">[ For students and recent graduates ]</span>
+                        <span class="meta block mt-2">[ For students &amp; recent graduates ]</span>
                     </button>
                     <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Free entry + real mentorship</h3>
                     <p class="text-sm text-mute leading-snug max-w-sm">Enter career-changing competitions with zero out-of-pocket costs, while getting one-on-one design guidance and critique from working professionals.</p>
@@ -234,7 +254,7 @@
                         <span class="meta block mt-2">[ For professionals ]</span>
                     </button>
                     <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Scout talent &amp; stay up to date with technology</h3>
-                    <p class="text-sm text-mute leading-snug max-w-sm">Discover rising designers before everyone else. Micro-fund entry fees, mentor students through real design problems, and earn a share when they win.</p>
+                    <p class="text-sm text-mute leading-snug max-w-sm">Discover rising designers before everyone else. Sponsor entry fees, mentor talent through real design problems, and learn emerging workflows.</p>
                 </div>
 
                 <!-- Industry -->
@@ -247,7 +267,7 @@
                         <span class="meta block mt-2">[ For industry ]</span>
                     </button>
                     <h3 class="text-xl font-medium tracking-tight mt-6 mb-2">Merit-based opportunity</h3>
-                    <p class="text-sm text-mute leading-snug max-w-sm">No student is left out because of registration costs. Talent is recognized for creativity, technical ability and problem solving — not wallet size.</p>
+                    <p class="text-sm text-mute leading-snug max-w-sm">No student or recent graduate is left out because of registration costs. Talent is recognized for creativity, technical ability, and problem solving — not wallet size.</p>
                 </div>
             </div>
         </section>
@@ -260,7 +280,7 @@
                     <h2 class="display text-5xl sm:text-6xl lg:text-7xl mb-10">How it<br>works</h2>
                     <!-- Role Toggle -->
                     <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium">
-                        <button id="toggleStudentFlow" onclick="switchWorkflow('student')" class="tab is-active">Student path</button>
+                        <button id="toggleStudentFlow" onclick="switchWorkflow('student')" class="tab is-active">Student &amp; recent graduate path</button>
                         <button id="toggleSponsorFlow" onclick="switchWorkflow('sponsor')" class="tab">Professional / sponsor path</button>
                     </div>
                 </div>
@@ -285,8 +305,8 @@
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">04</span>
-                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Win the competition &amp; / or  maintain industry connections &amp; learn from mentor </h4>
-                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Take home the majority of the prize money while building career-defining connections.</p>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Build network &amp; grow</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Build career-defining connections, expand your portfolio, and gain industry visibility.</p>
                 </div>
             </div>
 
@@ -295,84 +315,157 @@
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">01</span>
                     <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Browse talent pitches</h4>
-                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Review project concepts submitted by promising architecture and design students.</p>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Review project concepts submitted by promising architecture and design students and recent graduates.</p>
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">02</span>
                     <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Cover the fee &amp; partner</h4>
-                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Micro-sponsor entry fees ($50–$300) to back high-potential students early.</p>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Sponsor registration fees ($50–$300) to back high-potential designers early.</p>
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule-soft">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">03</span>
-                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Provide mentorship and learn from mentee</h4>
-                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Guide the student through desk crits and review sessions to elevate their entry.</p>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Provide mentorship &amp; learn</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Guide talent through review sessions while absorbing cutting-edge digital workflows.</p>
                 </div>
                 <div class="grid grid-cols-12 gap-x-8 py-5 border-b rule">
                     <span class="col-span-2 md:col-span-5 display text-3xl text-accent">04</span>
-                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Celebrate the win of the competition &amp;/ or expand on knowledge &amp;/ or recruit</h4>
-                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Get direct hiring priority, have fun, and stay up to date.</p>
+                    <h4 class="col-span-10 md:col-span-3 text-lg font-medium tracking-tight">Recruit &amp; stay ahead</h4>
+                    <p class="col-start-3 col-span-10 md:col-start-auto md:col-span-4 text-sm text-mute leading-snug mt-1 md:mt-0">Gain direct recruitment priority, foster innovation, and expand your professional network.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Prize Split Calculator -->
-        <section id="calculator" class="px-5 sm:px-8 py-20 md:py-28 bg-panel">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 mb-14">
-                <div class="md:col-span-5 meta rise">3 &nbsp; Split &amp; ROI</div>
+        <!-- Interactive Match Simulator (Replaces Split Calculator) -->
+        <section id="match-simulator" class="px-5 sm:px-8 py-20 md:py-28 bg-panel">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 mb-12">
+                <div class="md:col-span-5 meta rise">3 &nbsp; Match Simulator</div>
                 <div class="md:col-span-7 rise">
-                    <h2 class="display text-5xl sm:text-6xl lg:text-7xl mb-6">Prize split<br>calculator</h2>
-                    <p class="text-sm text-mute max-w-sm">Simulate competition entry costs, winning prize payouts and mentor return on investment.</p>
+                    <h2 class="display text-5xl sm:text-6xl lg:text-7xl mb-6">Interactive<br>match simulation</h2>
+                    <p class="text-sm text-mute max-w-md">Experience how FundMyEntry pairs industry mentors looking to explore new technologies with talented students and recent graduates.</p>
+                    
+                    <!-- View Toggle -->
+                    <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium mt-8">
+                        <button id="simProBtn" onclick="setSimMode('pro')" class="tab is-active">Professional View</button>
+                        <button id="simStudentBtn" onclick="setSimMode('student')" class="tab">Student &amp; Recent Graduate View</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-14">
-                <!-- Inputs -->
-                <div class="md:col-span-5 space-y-10 rise">
-                    <div>
-                        <label for="feeInput" class="flex justify-between items-baseline text-[0.8rem] mb-4">
-                            <span>registration fee <span class="text-mute">(covered 100%)</span></span>
-                            <span id="feeDisplay" class="font-semibold">$150</span>
-                        </label>
-                        <input id="feeInput" type="range" min="25" max="500" step="25" value="150">
+            <!-- Simulation Interactive Canvas -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 border-t rule pt-10">
+                
+                <!-- Left Column: Controls / Selection -->
+                <div class="md:col-span-5 space-y-8 rise">
+                    
+                    <!-- Pro View Controls -->
+                    <div id="proControls" class="space-y-6">
+                        <div>
+                            <span class="meta block mb-3 text-accent">[ Step 1 ] What technology / topic do you want to learn?</span>
+                            <div class="flex flex-wrap gap-2" id="techOptions">
+                                <button onclick="selectProTech('AI Generative Workflows')" class="chip-option is-selected">AI Generative Workflows</button>
+                                <button onclick="selectProTech('Parametric & Grasshopper')" class="chip-option">Parametric &amp; Grasshopper</button>
+                                <button onclick="selectProTech('Unreal Engine / Real-time VR')" class="chip-option">Unreal Engine / Real-time VR</button>
+                                <button onclick="selectProTech('Bio-materials & Sustainability')" class="chip-option">Bio-materials &amp; Sustainability</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="meta block mb-3 text-mute">[ Step 2 ] Select target competition tier</span>
+                            <select id="proCompTier" onchange="updateMatch()" class="bg-transparent border-b rule w-full py-2 text-sm font-medium focus:outline-none focus:border-accent">
+                                <option value="international" class="bg-paper text-ink">International Open Competitions (eVolo, Archasm)</option>
+                                <option value="academic" class="bg-paper text-ink">Academic Thesis & Innovation Grants</option>
+                                <option value="urban" class="bg-paper text-ink">Urban Design & Future Cities Challenges</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label for="prizeInput" class="flex justify-between items-baseline text-[0.8rem] mb-4">
-                            <span>winning prize</span>
-                            <span id="prizeDisplay" class="font-semibold">$5,000</span>
-                        </label>
-                        <input id="prizeInput" type="range" min="500" max="25000" step="500" value="5000">
+
+                    <!-- Student View Controls (Hidden by default) -->
+                    <div id="studentControls" class="space-y-6 hidden">
+                        <div>
+                            <span class="meta block mb-3 text-accent">[ Step 1 ] What advanced skill do you bring?</span>
+                            <div class="flex flex-wrap gap-2" id="skillOptions">
+                                <button onclick="selectStudentSkill('AI Concept Rendering')" class="chip-option is-selected">AI Concept Rendering</button>
+                                <button onclick="selectStudentSkill('Computational Optimization')" class="chip-option">Computational Optimization</button>
+                                <button onclick="selectStudentSkill('Interactive VR Walkthroughs')" class="chip-option">Interactive VR Walkthroughs</button>
+                                <button onclick="selectStudentSkill('Circular Building Systems')" class="chip-option">Circular Building Systems</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="meta block mb-3 text-mute">[ Step 2 ] Competition you want funded</span>
+                            <input type="text" id="studentCompInput" placeholder="e.g. eVolo Skyscraper Competition" value="eVolo Skyscraper Competition" oninput="updateMatch()" class="field text-lg">
+                        </div>
                     </div>
-                    <div>
-                        <label for="splitInput" class="flex justify-between items-baseline text-[0.8rem] mb-4">
-                            <span>sponsor share</span>
-                            <span id="splitDisplay" class="font-semibold">25%</span>
-                        </label>
-                        <input id="splitInput" type="range" min="5" max="50" step="5" value="25">
-                        <span class="text-[0.75rem] text-mute mt-3 block">student keeps <span id="studentSplitDisplay" class="text-ink font-semibold">75%</span></span>
+
+                    <div class="pt-4 border-t rule-soft">
+                        <div class="text-[0.75rem] text-mute leading-relaxed">
+                            <span class="font-semibold text-ink">How matching works:</span> Professionals provide funding and practical mentorship; students &amp; recent graduates contribute fresh digital workflows and creative vision.
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Simulated Live Match Card -->
+                <div class="md:col-start-7 md:col-span-6 rise" style="transition-delay:.15s">
+                    <div class="meta mb-3 flex justify-between items-center">
+                        <span>[ Simulated Match Preview ]</span>
+                        <span class="text-accent flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-accent animate-pulse inline-block"></span> 98% Match Score</span>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="bg-paper p-6 border rule space-y-6 shadow-sm">
+                        
+                        <!-- Profile Header -->
+                        <div class="flex items-start justify-between pb-4 border-b rule-soft">
+                            <div>
+                                <span class="meta text-mute block" id="cardRoleBadge">Candidate Profile</span>
+                                <h3 class="text-xl font-semibold tracking-tight mt-1" id="cardName">Elena Rostova</h3>
+                                <p class="text-xs text-mute" id="cardSub">Master of Architecture Candidate • ETH Zürich</p>
+                            </div>
+                            <span class="text-xs font-mono bg-panel px-2.5 py-1 rounded border rule-soft" id="cardBadge">STUDENT</span>
+                        </div>
+
+                        <!-- Expertise & Focus -->
+                        <div class="space-y-2">
+                            <span class="meta text-mute block">Featured Skill / Workflow</span>
+                            <div class="text-sm font-medium flex items-center gap-2" id="cardTechHighlight">
+                                <i class="fa-solid fa-bolt text-accent text-xs"></i>
+                                <span>AI Generative Workflows &amp; Midjourney Exploration</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Sample Preview Box -->
+                        <div class="bg-panel p-4 border rule-soft space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="meta text-mute">[ Portfolio / Design Preview ]</span>
+                                <span class="text-[0.7rem] font-mono text-accent" id="cardProjectTag">Concept Project '25</span>
+                            </div>
+                            <h4 class="text-sm font-semibold tracking-tight" id="cardProjectTitle">"Kinetic Algae Facade &amp; Micro-climate Tower"</h4>
+                            <p class="text-xs text-mute leading-relaxed" id="cardProjectDesc">
+                                Algorithmic study exploring adaptive shading skins integrated with bio-luminescent algae energy harvesting.
+                            </p>
+                        </div>
+
+                        <!-- Value Exchange Summary -->
+                        <div class="grid grid-cols-2 gap-4 pt-2 text-xs border-t rule-soft">
+                            <div>
+                                <span class="meta text-mute block">Entry Fee Sponsored</span>
+                                <span class="font-semibold text-ink text-sm" id="cardFee">$150 USD</span>
+                            </div>
+                            <div>
+                                <span class="meta text-mute block">Mentorship Schedule</span>
+                                <span class="font-semibold text-ink text-sm" id="cardMentorship">3x 1-on-1 Desk Crits</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Button inside Match Card -->
+                        <a href="#join" class="btn w-full text-center justify-center">
+                            Join Waitlist to Lock Match <span>↗</span>
+                        </a>
+
                     </div>
                 </div>
 
-                <!-- Results -->
-                <div class="md:col-start-7 md:col-span-6 rise" style="transition-delay:.1s">
-                    <div class="meta mb-3">[ Estimated outcome upon winning ]</div>
-                    <div class="border-t rule">
-                        <div class="flex justify-between items-end py-4 border-b rule">
-                            <span class="text-[0.8rem]">student net earnings</span>
-                            <span id="studentPayout" class="display text-5xl sm:text-6xl">$3,750</span>
-                        </div>
-                        <div class="flex justify-between items-end py-4 border-b rule">
-                            <span class="text-[0.8rem]">sponsor / mentor payout</span>
-                            <span id="sponsorPayout" class="display text-5xl sm:text-6xl text-accent">$1,250</span>
-                        </div>
-                        <div class="flex justify-between items-end py-4 border-b rule">
-                            <span class="text-[0.8rem]">sponsor ROI multiplier</span>
-                            <span id="sponsorRoi" class="text-2xl font-medium tracking-tight">8.3x Return</span>
-                        </div>
-                    </div>
-                    <p class="text-[0.7rem] text-mute leading-snug mt-4 max-w-md">
-                        *Students pay $0 regardless of outcome. Sponsors cover registration costs in exchange for talent access, mentoring opportunities and prize equity.
-                    </p>
-                </div>
             </div>
         </section>
 
@@ -397,7 +490,7 @@
                                 <div class="border-t rule">
                                     <label class="role-option">
                                         <input type="radio" name="role" value="student" required>
-                                        <span class="font-medium">Architecture / design student</span>
+                                        <span class="font-medium">Architecture / design student or recent graduate</span>
                                         <span class="meta text-mute">A</span>
                                     </label>
                                     <label class="role-option">
@@ -445,11 +538,11 @@
                     <div class="border-t rule">
                         <div class="border-b rule">
                             <button onclick="toggleFaq(1)" class="w-full py-5 text-left flex justify-between items-center gap-6 hover:text-accent transition-colors">
-                                <span class="text-lg sm:text-xl font-medium tracking-tight">Is entry really 100% free for students?</span>
+                                <span class="text-lg sm:text-xl font-medium tracking-tight">Is entry really 100% free for students and recent graduates?</span>
                                 <span id="faqIcon1" class="faq-mark"></span>
                             </button>
                             <div id="faqAns1" class="pb-6 text-sm text-mute leading-snug max-w-lg hidden">
-                                Yes. Sponsors cover 100% of registration fees directly. Students pay zero out-of-pocket costs and face no financial liability whether the project wins or loses.
+                                Yes. Professional sponsors cover 100% of registration fees directly. Students and recent graduates pay zero out-of-pocket costs and face no financial liability.
                             </div>
                         </div>
                         <div class="border-b rule">
@@ -458,11 +551,17 @@
                                 <span id="faqIcon2" class="faq-mark"></span>
                             </button>
                             <div id="faqAns2" class="pb-6 text-sm text-mute leading-snug max-w-lg hidden">
-                                Sponsoring professionals provide structured desk crits, design feedback and industry insights as students prepare their competition submissions.
+                                Sponsoring professionals provide structured desk crits, design feedback, and industry insights as students and recent graduates prepare their competition submissions.
                             </div>
                         </div>
                         <div class="border-b rule">
                             <button onclick="toggleFaq(3)" class="w-full py-5 text-left flex justify-between items-center gap-6 hover:text-accent transition-colors">
+                                <span class="text-lg sm:text-xl font-medium tracking-tight">What do professionals gain from sponsoring?</span>
+                                <span id="faqIcon3" class="faq-mark"></span>
+                            </button>
+                            <div id="faqAns3" class="pb-6 text-sm text-mute leading-snug max-w-lg hidden">
+                                Professionals gain early access to top talent, exposure to emerging software workflows and computational tech, and the opportunity to give back to the design community.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -477,7 +576,7 @@
             <div class="md:col-span-5 meta">[ Links ]</div>
             <div class="md:col-span-7 display text-5xl sm:text-6xl lg:text-7xl flex flex-col items-start">
                 <a href="#join" class="hover:text-accent transition-colors">Waitlist</a>
-                <a href="#calculator" class="hover:text-accent transition-colors">Calculator</a>
+                <a href="#match-simulator" class="hover:text-accent transition-colors">Match Simulator</a>
                 <a href="#" class="hover:text-accent transition-colors">Contact</a>
             </div>
         </div>
@@ -487,193 +586,288 @@
                 <a href="#" class="hover:text-accent transition-colors">Privacy policy</a>
                 <a href="#" class="hover:text-accent transition-colors">Terms of service</a>
             </div>
-            <span>All rights reserved</span>
         </div>
     </footer>
 
-    <!-- Value Proposition Modal -->
-    <div id="infoModal" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/60 backdrop-blur-sm hidden" onclick="if (event.target === this) closeModal()">
-        <div class="bg-paper text-ink max-w-lg w-full p-6 sm:p-8 relative">
-            <button onclick="closeModal()" aria-label="Close" class="absolute top-6 right-6 hover:text-accent transition-colors">
-                <span class="faq-mark open block"></span>
-            </button>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
     <!-- JavaScript Logic -->
     <script>
-        // State Management
-        let waitlistCount = parseInt(localStorage.getItem('fme_waitlist_count') || '1428');
-
-        document.getElementById('heroCounter').textContent = waitlistCount.toLocaleString();
-
-        // Theme Switcher Logic
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-
-        function syncThemeIcon() {
-            const isDark = document.documentElement.classList.contains('dark');
-            themeIcon.className = (isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon') + ' text-[10px]';
-            themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('fme_theme', isDark ? 'dark' : 'light');
-            syncThemeIcon();
-        });
-        syncThemeIcon();
-
-        // Local clock in the top bar
+        // 1. Clock Update
         function updateClock() {
-            document.getElementById('clock').textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const now = new Date();
+            const hrs = String(now.getHours()).padStart(2, '0');
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            const clockEl = document.getElementById('clock');
+            if (clockEl) clockEl.textContent = `${hrs}:${mins}`;
         }
+        setInterval(updateClock, 1000);
         updateClock();
-        setInterval(updateClock, 30000);
 
-        // Reveal on scroll
-        const revealObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in');
-                    revealObserver.unobserve(entry.target);
-                }
+        // 2. Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        function setTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('fme_theme', 'dark');
+                if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-[10px]';
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('fme_theme', 'light');
+                if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-[10px]';
+            }
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                setTheme(!isDark);
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.rise').forEach(el => revealObserver.observe(el));
+            // Initial icon sync
+            setTheme(document.documentElement.classList.contains('dark'));
+        }
 
-        // Workflow Switcher
+        // 3. Workflow Switcher
         function switchWorkflow(role) {
-            const isStudent = role === 'student';
-            document.getElementById('studentWorkflow').classList.toggle('hidden', !isStudent);
-            document.getElementById('sponsorWorkflow').classList.toggle('hidden', isStudent);
-            document.getElementById('toggleStudentFlow').classList.toggle('is-active', isStudent);
-            document.getElementById('toggleSponsorFlow').classList.toggle('is-active', !isStudent);
-        }
+            const studentFlow = document.getElementById('studentWorkflow');
+            const sponsorFlow = document.getElementById('sponsorWorkflow');
+            const btnStudent = document.getElementById('toggleStudentFlow');
+            const btnSponsor = document.getElementById('toggleSponsorFlow');
 
-        // Calculator Logic
-        const feeInput = document.getElementById('feeInput');
-        const prizeInput = document.getElementById('prizeInput');
-        const splitInput = document.getElementById('splitInput');
-
-        function updateCalculator() {
-            const fee = parseFloat(feeInput.value);
-            const prize = parseFloat(prizeInput.value);
-            const sponsorPercent = parseFloat(splitInput.value);
-            const studentPercent = 100 - sponsorPercent;
-
-            const sponsorShare = (prize * (sponsorPercent / 100));
-            const studentShare = prize - sponsorShare;
-            const roi = (sponsorShare / fee).toFixed(1);
-
-            document.getElementById('feeDisplay').textContent = `$${fee}`;
-            document.getElementById('prizeDisplay').textContent = `$${prize.toLocaleString()}`;
-            document.getElementById('splitDisplay').textContent = `${sponsorPercent}%`;
-            document.getElementById('studentSplitDisplay').textContent = `${studentPercent}%`;
-
-            document.getElementById('studentPayout').textContent = `$${studentShare.toLocaleString()}`;
-            document.getElementById('sponsorPayout').textContent = `$${sponsorShare.toLocaleString()}`;
-            document.getElementById('sponsorRoi').textContent = `${roi}x Return`;
-        }
-
-        feeInput.addEventListener('input', updateCalculator);
-        prizeInput.addEventListener('input', updateCalculator);
-        splitInput.addEventListener('input', updateCalculator);
-        updateCalculator();
-
-        // Waitlist Form Handler
-        const waitlistForm = document.getElementById('waitlistForm');
-        const formMsg = document.getElementById('formMsg');
-        const submitBtn = document.getElementById('submitBtn');
-
-        function showFormError(message) {
-            formMsg.textContent = message;
-            formMsg.className = 'form-msg error';
-        }
-
-        waitlistForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const role = waitlistForm.querySelector('input[name="role"]:checked');
-
-            if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                showFormError('Please enter a valid email address.');
-                return;
+            if (role === 'student') {
+                studentFlow.classList.remove('hidden');
+                sponsorFlow.classList.add('hidden');
+                btnStudent.classList.add('is-active');
+                btnSponsor.classList.remove('is-active');
+            } else {
+                studentFlow.classList.add('hidden');
+                sponsorFlow.classList.remove('hidden');
+                btnStudent.classList.remove('is-active');
+                btnSponsor.classList.add('is-active');
             }
-
-            if(!role) {
-                showFormError('Please select a role option.');
-                return;
-            }
-
-            formMsg.textContent = '';
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining Waitlist...';
-
-            fetch(waitlistForm.action, {
-                method: 'POST',
-                body: new FormData(waitlistForm),
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (!response.ok) throw new Error('Submission failed');
-
-                waitlistCount += 1;
-                localStorage.setItem('fme_waitlist_count', waitlistCount.toString());
-                document.getElementById('heroCounter').textContent = waitlistCount.toLocaleString();
-                document.getElementById('queuePosition').textContent = waitlistCount.toLocaleString();
-
-                document.getElementById('formContainer').classList.add('hidden');
-                document.getElementById('successState').classList.remove('hidden');
-            }).catch(() => {
-                showFormError('Something went wrong. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Get Early Access';
-            });
-        });
-
-        // FAQ Toggle
-        function toggleFaq(num) {
-            const ans = document.getElementById(`faqAns${num}`);
-            const icon = document.getElementById(`faqIcon${num}`);
-            const isOpen = !ans.classList.toggle('hidden');
-            icon.classList.toggle('open', isOpen);
         }
 
-        // Modal Handler
-        const infoData = {
-            students: {
-                title: "Student Benefits",
-                body: "Enter high-caliber competitions at $0 cost. Receive desk critiques and portfolio feedback from practicing architects and firms while retaining 100% IP ownership."
+        // 4. FAQ Accordion Toggle
+        function toggleFaq(id) {
+            const ans = document.getElementById(`faqAns${id}`);
+            const icon = document.getElementById(`faqIcon${id}`);
+            if (ans && icon) {
+                const isHidden = ans.classList.contains('hidden');
+                ans.classList.toggle('hidden');
+                icon.classList.toggle('open', isHidden);
+            }
+        }
+
+        // 5. Match Simulator Logic
+        let currentMode = 'pro'; // 'pro' or 'student'
+        let selectedTech = 'AI Generative Workflows';
+        let selectedSkill = 'AI Concept Rendering';
+
+        const matchDatabase = {
+            pro: {
+                'AI Generative Workflows': {
+                    name: 'Elena Rostova',
+                    sub: 'Master of Architecture Candidate • ETH Zürich',
+                    badge: 'STUDENT',
+                    tech: 'AI Generative Workflows & Midjourney Exploration',
+                    projectTitle: '"Kinetic Algae Facade & Micro-climate Tower"',
+                    projectDesc: 'Algorithmic study exploring adaptive shading skins integrated with bio-luminescent algae energy harvesting.',
+                    projectTag: 'eVolo Entry Pitch',
+                    fee: '$150 USD',
+                    mentorship: '3x 1-on-1 Desk Crits'
+                },
+                'Parametric & Grasshopper': {
+                    name: 'Marcus Chen',
+                    sub: 'Recent Graduate (B.Arch) • Cornell AAP',
+                    badge: 'RECENT GRADUATE',
+                    tech: 'Parametric Geometry & Grasshopper Structural Optimization',
+                    projectTitle: '"Recycled Timber Lattice Canopy"',
+                    projectDesc: 'Optimization script calculating minimum material thickness for timber shell structures with zero-waste jointing.',
+                    projectTag: 'Timber Design Award',
+                    fee: '$200 USD',
+                    mentorship: '4x Technical Reviews'
+                },
+                'Unreal Engine / Real-time VR': {
+                    name: 'Sofia Al-Mansoor',
+                    sub: 'Architecture Student • Architectural Association (AA)',
+                    badge: 'STUDENT',
+                    tech: 'Unreal Engine 5 Real-Time Architectural Visualization',
+                    projectTitle: '"Subterranean Hydrological Habitat"',
+                    projectDesc: 'Immersive VR presentation allowing judges to walk through interactive subterranean water-purification chambers.',
+                    projectTag: 'Archasm Challenge',
+                    fee: '$120 USD',
+                    mentorship: '2x Storyboard Crits'
+                },
+                'Bio-materials & Sustainability': {
+                    name: 'Liam O\'Connor',
+                    sub: 'Recent Graduate (M.Arch) • TU Delft',
+                    badge: 'RECENT GRADUATE',
+                    tech: 'Mycelium Composites & Circular Construction',
+                    projectTitle: '"Zero-Carbon Mycelium Pavilion"',
+                    projectDesc: 'Research proposal testing self-healing bio-brick composites for temporary emergency relief structures.',
+                    projectTag: 'Sustainability Grant',
+                    fee: '$180 USD',
+                    mentorship: '3x Material Reviews'
+                }
             },
-            sponsors: {
-                title: "Professional & Sponsor Benefits",
-                body: "Identify rising talent before graduation. Micro-sponsor entry fees, offer guidance, earn prize money, and create direct recruitment pipelines."
-            },
-            everyone: {
-                title: "Industry Impact",
-                body: "Levelling the playing field across architecture and design education so talent is judged strictly on innovation and technical merit."
+            student: {
+                'AI Concept Rendering': {
+                    name: 'Studio Foster & Partners (Partner Mentor)',
+                    sub: 'Design Director & Tech Lead • London Studio',
+                    badge: 'MENTOR FIRM',
+                    tech: 'Seeking: Fresh perspectives in Generative AI Concept Art',
+                    projectTitle: '"Sponsored Entry: eVolo Skyscraper Competition"',
+                    projectDesc: 'Firm will cover your full $150 entry fee and provide 3 design reviews with senior associates.',
+                    projectTag: 'Sponsorship Grant',
+                    fee: '$150 USD (Covered)',
+                    mentorship: 'Direct Hiring Priority'
+                },
+                'Computational Optimization': {
+                    name: 'Zaha Hadid Architects (Computation Group)',
+                    sub: 'Senior Computational Designer • New York Office',
+                    badge: 'MENTOR FIRM',
+                    tech: 'Seeking: Advanced Grasshopper & Python Optimization Scripts',
+                    projectTitle: '"Sponsored Entry: Digital Fabrication Challenge"',
+                    projectDesc: 'Full registration funding plus direct mentorship on structural optimization and parametric detailing.',
+                    projectTag: 'Sponsorship Grant',
+                    fee: '$200 USD (Covered)',
+                    mentorship: 'Portfolio Review + Interview'
+                },
+                'Interactive VR Walkthroughs': {
+                    name: 'BIG - Bjarke Ingels Group',
+                    sub: 'Associate & Visualization Director • Copenhagen',
+                    badge: 'MENTOR FIRM',
+                    tech: 'Seeking: Real-time Unreal Engine 5 Architectural VR Workflows',
+                    projectTitle: '"Sponsored Entry: Urban Futures Competition"',
+                    projectDesc: 'Full entry sponsorship and mentorship focused on interactive spatial storytelling and presentation.',
+                    projectTag: 'Sponsorship Grant',
+                    fee: '$175 USD (Covered)',
+                    mentorship: 'Virtual Studio Access'
+                },
+                'Circular Building Systems': {
+                    name: 'Arup Sustainability Division',
+                    sub: 'Principal Environmental Engineer • Berlin',
+                    badge: 'MENTOR FIRM',
+                    tech: 'Seeking: Bio-material integration & Circular Lifecycle Analysis',
+                    projectTitle: '"Sponsored Entry: Circular Architecture Award"',
+                    projectDesc: 'Covering entry fee ($150) plus expert technical advice on life-cycle analysis and bio-based materials.',
+                    projectTag: 'Sponsorship Grant',
+                    fee: '$150 USD (Covered)',
+                    mentorship: 'Technical Mentorship'
+                }
             }
         };
 
-        function openModal(type) {
-            const data = infoData[type];
-            document.getElementById('modalContent').innerHTML = `
-                <span class="meta block mb-10">[ ${data.title} ]</span>
-                <h3 class="display text-4xl mb-6 pr-8">${data.title}</h3>
-                <p class="text-sm text-mute leading-snug">${data.body}</p>
-                <button onclick="closeModal()" class="btn mt-10 w-full">Close <span>×</span></button>
-            `;
-            document.getElementById('infoModal').classList.remove('hidden');
+        function setSimMode(mode) {
+            currentMode = mode;
+            const proBtn = document.getElementById('simProBtn');
+            const studentBtn = document.getElementById('simStudentBtn');
+            const proCtrl = document.getElementById('proControls');
+            const studentCtrl = document.getElementById('studentControls');
+
+            if (mode === 'pro') {
+                proBtn.classList.add('is-active');
+                studentBtn.classList.remove('is-active');
+                proCtrl.classList.remove('hidden');
+                studentCtrl.classList.add('hidden');
+            } else {
+                studentBtn.classList.add('is-active');
+                proBtn.classList.remove('is-active');
+                studentCtrl.classList.remove('hidden');
+                proCtrl.classList.add('hidden');
+            }
+            updateMatch();
         }
 
-        function closeModal() {
-            document.getElementById('infoModal').classList.add('hidden');
+        function selectProTech(techName) {
+            selectedTech = techName;
+            document.querySelectorAll('#techOptions .chip-option').forEach(btn => {
+                btn.classList.toggle('is-selected', btn.textContent.trim().includes(techName));
+            });
+            updateMatch();
         }
 
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+        function selectStudentSkill(skillName) {
+            selectedSkill = skillName;
+            document.querySelectorAll('#skillOptions .chip-option').forEach(btn => {
+                btn.classList.toggle('is-selected', btn.textContent.trim().includes(skillName));
+            });
+            updateMatch();
+        }
+
+        function updateMatch() {
+            let data;
+            if (currentMode === 'pro') {
+                data = matchDatabase.pro[selectedTech] || matchDatabase.pro['AI Generative Workflows'];
+            } else {
+                data = matchDatabase.student[selectedSkill] || matchDatabase.student['AI Concept Rendering'];
+            }
+
+            document.getElementById('cardName').textContent = data.name;
+            document.getElementById('cardSub').textContent = data.sub;
+            document.getElementById('cardBadge').textContent = data.badge;
+            document.getElementById('cardRoleBadge').textContent = currentMode === 'pro' ? 'Student & Recent Graduate Match' : 'Sponsoring Mentor Match';
+            document.getElementById('cardTechHighlight').querySelector('span').textContent = data.tech;
+            document.getElementById('cardProjectTitle').textContent = data.projectTitle;
+            document.getElementById('cardProjectDesc').textContent = data.projectDesc;
+            document.getElementById('cardProjectTag').textContent = data.projectTag;
+            document.getElementById('cardFee').textContent = data.fee;
+            document.getElementById('cardMentorship').textContent = data.mentorship;
+        }
+
+        // 6. Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.rise').forEach(el => observer.observe(el));
+
+        // 7. Formspree Waitlist Form Submission
+        const waitlistForm = document.getElementById('waitlistForm');
+        if (waitlistForm) {
+            waitlistForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formMsg = document.getElementById('formMsg');
+                const submitBtn = document.getElementById('submitBtn');
+                const formContainer = document.getElementById('formContainer');
+                const successState = document.getElementById('successState');
+
+                formMsg.textContent = '';
+                formMsg.className = 'form-msg';
+
+                const formData = new FormData(waitlistForm);
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                try {
+                    const response = await fetch(waitlistForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        formContainer.classList.add('hidden');
+                        successState.classList.remove('hidden');
+                    } else {
+                        const data = await response.json();
+                        formMsg.textContent = data.errors ? data.errors.map(err => err.message).join(', ') : 'Submission failed. Please try again.';
+                        formMsg.classList.add('error');
+                    }
+                } catch (error) {
+                    formMsg.textContent = 'An error occurred. Please try again.';
+                    formMsg.classList.add('error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get Early Access';
+                }
+            });
+        }
     </script>
 </body>
 </html>
-<script async src="/.netlify/scripts/ar" data-netlify-deploy-id="6ae114bc087f9d0cad5011fa" data-netlify-site-id="753a9734-ed62-4c18-989c-b85e24e04505" data-agent-runner-id="6ae111d3b4cc3066a88a4ece"></script>
-<script async src="/.netlify/scripts/hud?variant=owner-private" data-nf-variant="owner-private" data-netlify-site-id="753a9734-ed62-4c18-989c-b85e24e04505" data-app-host="app.netlify.com"></script>
